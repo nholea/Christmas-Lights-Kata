@@ -2,7 +2,6 @@ package christmas.lights.kata;
 
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class ChristmasGrid {
 
@@ -21,9 +20,9 @@ public class ChristmasGrid {
         return christmasGrid;
     }
     public void turnOnLights(Coordinate start, Coordinate end){
-        for (int i= start.getX(); i<= end.getX(); i++){
-            for (int j = start.getY(); j<= end.getY(); j++){
-                christmasGrid[i][j] = 1;
+        for (int x= start.getX(); x<= end.getX(); x++){
+            for (int y = start.getY(); y<= end.getY(); y++){
+                christmasGrid[x][y] = 1;
 
             }
         }
@@ -31,9 +30,9 @@ public class ChristmasGrid {
     }
 
     public void turnOffLights(Coordinate start, Coordinate end){
-        for (int i= start.getX(); i<= end.getX(); i++){
-            for (int j = start.getY(); j<= end.getY(); j++){
-                christmasGrid[i][j] = 0;
+        for (int x= start.getX(); x<= end.getX(); x++){
+            for (int y = start.getY(); y<= end.getY(); y++){
+                christmasGrid[x][y] = 0;
             }
         }
 
@@ -51,21 +50,12 @@ public class ChristmasGrid {
             }
         }
 
-
     public int lightsCounter() {
         long totalLightOn= Arrays.stream(christmasGrid).flatMapToInt(Arrays::stream).filter(x-> x== 1).count();
         return Math.toIntExact(totalLightOn);
 
     }
 
-    public void printBoard() {
-        for (int row=0; row< christmasGrid[0].length; row++){
-            for (int col=0; col< christmasGrid[1].length; col++) {
-                System.out.print(christmasGrid[row][col]);
-            }
-            System.out.println();
-        }
-    }
 
     public static void main(String[] args){
         ChristmasGrid grid = new ChristmasGrid();
