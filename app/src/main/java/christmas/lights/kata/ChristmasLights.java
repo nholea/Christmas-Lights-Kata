@@ -1,20 +1,16 @@
 package christmas.lights.kata;
 
-import java.util.Random;
 
 public class ChristmasLights {
-    private int status;
-    Random random = new Random();
+    private final int status;
+
 
     public ChristmasLights() {
-        this.status = random.nextInt(2);
+        this.status = 0;
     }
 
     public int getStatus() {
         return status;
     }
-    public void setStatus(int status) {
-        this.status = status;
 
-    }
 }

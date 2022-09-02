@@ -9,10 +9,9 @@ public class ChristmasGrid {
     private int [][] christmasGrid;
 
     public ChristmasGrid(){
-        this.christmasGrid = new int[6][6];
+        this.christmasGrid = new int[1000][1000];
 
     }
-
     public int[][] createGrid(){
         for (int row=0; row< christmasGrid[0].length; row++){
             for (int col=0; col< christmasGrid[1].length; col++){
@@ -21,54 +20,66 @@ public class ChristmasGrid {
         }
         return christmasGrid;
     }
-
     public void turnOnLights(Coordinate start, Coordinate end){
-        int[][] turnOnLightsGrid = new int[6][6];
         for (int i= start.getX(); i<= end.getX(); i++){
             for (int j = start.getY(); j<= end.getY(); j++){
-                if (christmasGrid[i][j] == 0){
-                    turnOnLightsGrid[i][j] = 1;
-                }
-                else {
-                    turnOnLightsGrid[i][j] = 1;
-                }
+                christmasGrid[i][j] = 1;
+
             }
         }
-        christmasGrid = turnOnLightsGrid;
 
     }
 
     public void turnOffLights(Coordinate start, Coordinate end){
-        int[][] turnOffLightsGrid = new int[6][6];
         for (int i= start.getX(); i<= end.getX(); i++){
             for (int j = start.getY(); j<= end.getY(); j++){
-                if (christmasGrid[i][j] == 1){
-                    turnOffLightsGrid[i][j] = 0;
+                christmasGrid[i][j] = 0;
+            }
+        }
+
+    }
+
+    public void toggleLights(Coordinate start, Coordinate end){
+        for (int i= start.getX(); i<= end.getX(); i++){
+            for (int j = start.getY(); j<= end.getY(); j++){
+                if (christmasGrid[i][j] == 0){
+                    christmasGrid[i][j] = 1;
+                }else {
+                    christmasGrid[i][j] = 0;
                 }
-                else {
-                    turnOffLightsGrid[i][j] = 0;
                 }
             }
         }
-        christmasGrid = turnOffLightsGrid;
-    }
 
 
     public int lightsCounter() {
-        long totalLightOn= Arrays.stream(christmasGrid).flatMapToInt(Arrays::stream).filter(x -> x == 1).count();
+        long totalLightOn= Arrays.stream(christmasGrid).flatMapToInt(Arrays::stream).filter(x-> x== 1).count();
         return Math.toIntExact(totalLightOn);
+
     }
 
-
+    public void printBoard() {
+        for (int row=0; row< christmasGrid[0].length; row++){
+            for (int col=0; col< christmasGrid[1].length; col++) {
+                System.out.print(christmasGrid[row][col]);
+            }
+            System.out.println();
+        }
+    }
 
     public static void main(String[] args){
         ChristmasGrid grid = new ChristmasGrid();
-        System.out.println(grid.createGrid().length);
-        grid.turnOnLights(new Coordinate(0,0),new Coordinate(5,5));
+        grid.turnOnLights(new Coordinate(887,9),new Coordinate(959,629));
+        grid.turnOnLights(new Coordinate(454,398  ),new Coordinate(844,448));
+        grid.turnOffLights(new Coordinate(539,243),new Coordinate(559,965));
+        grid.turnOffLights(new Coordinate(370,819),new Coordinate(676,868));
+        grid.turnOffLights(new Coordinate(145,40 ),new Coordinate(370,997));
+        grid.turnOffLights(new Coordinate(301,3),new Coordinate(808,453));
+        grid.turnOnLights(new Coordinate(351,678 ),new Coordinate(951,908));
+        grid.toggleLights(new Coordinate(720,196 ),new Coordinate(897,994));
+        grid.toggleLights(new Coordinate(831,394 ),new Coordinate(904,860));
+
         System.out.println(grid.lightsCounter());
-        //grid.printBoard();
-        System.out.println();
-        grid.turnOffLights(new Coordinate(0,0),new Coordinate(5,5));
-        //grid.printBoard();
+
     }
 }

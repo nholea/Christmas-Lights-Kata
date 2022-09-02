@@ -1,10 +1,9 @@
 package christmas.lights.kata;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//import org.assertj.core.api.Assertions.*;
+
 
 
 class ChristmasGridTest {
@@ -27,11 +26,29 @@ class ChristmasGridTest {
         Coordinate startCoordinate = new Coordinate(0,0);
         Coordinate endCoordinate = new Coordinate(999,999);
         ChristmasGrid grid= new ChristmasGrid();
-        int expectedLightsOn = 1000;
+        int expectedLightsOn = 1000000;
 
         grid.createGrid();
         grid.turnOnLights(startCoordinate, endCoordinate);
         int lightsOnResult = grid.lightsCounter();
         assertThat(lightsOnResult).isEqualTo(expectedLightsOn);
     }
+
+    @Test
+    void given_the_coordinates_00_and_22_it_will_turn_on_9_lights(){
+        Coordinate startCoordinate = new Coordinate(0,0);
+        Coordinate endCoordinate = new Coordinate(2,2);
+        ChristmasGrid grid= new ChristmasGrid();
+        int expectedLightsOn = 9;
+
+        grid.createGrid();
+        grid.turnOnLights(startCoordinate, endCoordinate);
+        int lightsOnResult = grid.lightsCounter();
+        assertThat(lightsOnResult).isEqualTo(expectedLightsOn);
+
+
+    }
+
+
+
 }
