@@ -45,9 +45,21 @@ class ChristmasGridTest {
         grid.turnOnLights(startCoordinate, endCoordinate);
         int lightsOnResult = grid.lightsCounter();
         assertThat(lightsOnResult).isEqualTo(expectedLightsOn);
-
-
     }
+
+    @Test
+    void toggle_the_first_of_line_1000_lights(){
+        Coordinate startCoordinate= new Coordinate(0,0);
+        Coordinate endCoordinate= new Coordinate(999,0);
+        ChristmasGrid grid= new ChristmasGrid();
+        int expectedLightsOn = 1000;
+
+        grid.createGrid();
+        grid.toggleLights(startCoordinate, endCoordinate);
+        int lightsOnResult = grid.lightsCounter();
+        assertThat(lightsOnResult).isEqualTo(expectedLightsOn);
+    }
+
 
 
 
