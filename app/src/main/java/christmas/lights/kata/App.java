@@ -3,12 +3,21 @@
  */
 package christmas.lights.kata;
 
+import java.util.HashMap;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
+        HashMap<String, String> example = new HashMap<>(20);
+
+        for (String name: example.keySet()) {
+            String value = example.get(name);
+            System.out.println(name  + " " + value);
+        }
+
         System.out.println(new App().getGreeting());
     }
 }
